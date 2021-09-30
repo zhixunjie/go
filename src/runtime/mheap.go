@@ -536,6 +536,8 @@ const (
 	tinySpanClass  = spanClass(tinySizeClass<<1 | 1)
 )
 
+// noscan为true代表对象不包含指针
+// 比如：SizeClass=3，如果对象不包含指针，SpanClass=7。如果对象包含指针，SpanClass=6。
 func makeSpanClass(sizeclass uint8, noscan bool) spanClass {
 	return spanClass(sizeclass<<1) | spanClass(bool2int(noscan))
 }
